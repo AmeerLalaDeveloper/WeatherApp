@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 2rem;
+            background: rgb(215, 245, 250);
+           
+        }
+        .container >div{
+            width: 70vw;
+            text-align: left;
+            margin: 1rem 0;
+        }
+        .search{
+           
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+        #city-name{
+        height: 3rem;
+        border-radius: 5px;
+        border: none;
+        width: 70%;
+        font-size: 1.5rem;
+        padding: 0 .5rem;
+        background: rgb(248, 248, 248);
+        
+        color: #000;
+        }
+        .btn{
+        display: block;
+        height: 3rem;
+        border-radius: 5px; 
+        border:none;
+        padding:0 2rem;
+        font-size: 1.25rem;
+        background: rgb(153, 206, 236);
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+        ul{
+            list-style-type: none;
+            max-height: 400px;
+            overflow: auto;
+            padding: 1.5rem;
+        }
+        li{
+            width: 60%;
+            display: block;
+            margin: 1rem 0;
+            position: relative;
+        }
+        li::after{
+            content: "";
+            min-width: 100%;
+            margin: 1rem 0;
+            max-width: 900px;
+            background: gray;
+            height: 4px;
+            position: absolute;
+            z-index: 10;
+        left: 0;
+        bottom: 0;
+
+        }
+        li img{
+            height: 100px;
+             width: 100px;
+             display: block;
+            margin: 0 auto;
+             
+          
+        }
+        .item{
+            font-size: 1.25rem;
+            color: rgb(9, 71, 56);
+        }
+        .res{
+            display: block;
+            padding: .5rem;
+            
+            margin: .5rem 0;
+            text-align: center;
+            border-radius: 5px;
+            background: rgb(39, 255, 103);
+        }
+        .current{
+
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+         
+        }
+        .title{
+            margin: .5rem 0;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-decoration: underline;
+            display: block;
+        }
+        .msg
+        {
+            font-size: 1.5rem;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="search">
+        <input type="text" name="cityName" id="city-name">
+        <button class="btn search-btn">Search</button></div>
+        <div class="msg"></div>
+        <div class="current">
+        <div class="item"><span class="title"> Current Weather :</span> <span class="res current-weather"></span></div>
+       <div class="item"><span class="title"> Sunsrise : </span><span class="res sunrise"></span></div>
+       <div class="item"><span class="title"> Sunset : </span><span class="res sunset"></span></div>
+    </div>
+        <div class="item"><span class="title"> Searched Weather :</span> <ul class="city-list"></ul>
+            </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
