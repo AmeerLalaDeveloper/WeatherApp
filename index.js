@@ -7,7 +7,25 @@ const sunrise=document.querySelector('.sunrise')
 const sunset=document.querySelector('.sunset')
 let latitude,longitude;
 let userInput=null;
+let isDeleted=false;
 const cityList=document.querySelector('.city-list')
+
+function handleDeleteBtn(){
+    const deleteBtn=document.querySelectorAll('.delete')
+    
+Array.from(deleteBtn).forEach(button=>{
+    button.addEventListener('click',function(e){
+         let list_item=e.target.parentElement;
+               console.log(e.target.nextElementSibling);
+        let key=e.target.nextElementSibling.
+        nextElementSibling.textContent.toString()
+  
+        localStorage.removeItem(key.trim())
+          list_item.remove();
+     
+    })
+})
+}
 
 async function getWeatherIcon(pngCode){
     const request=(await fetch(`http://openweathermap.org/img/wn/${pngCode}@2x.png`))
@@ -53,10 +71,12 @@ async function getWeaterData(cityName=null,curr=false){
             if(!Object.keys(localStorage).includes(userInput)){
             cityList.innerHTML+=
             `<li>
+             <button class="delete">Delete</button>
               <span class="title">  City :</span> <span class="res">${userInput}</span>
                <span class="title"> Temprature :</span><span class="res">${(request.main.temp-273.15).toFixed(2)} C&#176;</span></span>
 
               <span class="title"> Condition : <img src="${img}" alt="">
+             <hr>
             </li>`
                 }    
             localStorage.setItem(userInput,(
@@ -69,7 +89,10 @@ async function getWeaterData(cityName=null,curr=false){
             ))
 
             }
-     
+
+            handleDeleteBtn()
+       
+            
         
 }
 function validateUserInput(value){
@@ -97,11 +120,14 @@ function firstLetterUpper(userInput){
      let keys=Object.keys(localStorage);
    for(let key in  keys)
     cityList.innerHTML+= 
-    `<li>
+    `<li>  <button class="delete">Delete</button>
     <span class="title">City :</span><span class="res"> ${keys[key]}</span></br>
      <span class="title">Temprature :</span><span class="res">${JSON.parse(localStorage.getItem(keys[key])).temp} C&#176</span>
      <span class="title"> Condition : </span><img src="${JSON.parse(localStorage.getItem(keys[key])).png}" alt="">
-     </li>`
+     
+     <hr></li>`
+    handleDeleteBtn();
+ 
 }
 cityInput.addEventListener('keydown',(e)=>{ 
     message.textContent='';
@@ -120,3 +146,4 @@ search.addEventListener('click',async ()=>{
    }
    else message.textContent='No Such City Found'
 })
+
