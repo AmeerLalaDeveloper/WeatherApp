@@ -16,7 +16,6 @@ function handleDeleteBtn(){
 Array.from(deleteBtn).forEach(button=>{
     button.addEventListener('click',function(e){
          let list_item=e.target.parentElement;
-               console.log(e.target.nextElementSibling);
         let key=e.target.nextElementSibling.
         nextElementSibling.textContent.toString()
   
